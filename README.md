@@ -128,7 +128,6 @@ A continuación se describe detalladamente la lógica, la arquitectura y el prop
       } catch (error: any) { ... }
     };
     ```
-*   **Detalle para la defensa:** El middleware `multer` en `index.ts` intercepta la carga del archivo y lo guarda en memoria (`file.buffer`), evitando escribir archivos temporales en el disco duro del servidor, lo que hace el proceso extremadamente rápido y seguro.
 
 ---
 
@@ -159,7 +158,7 @@ A continuación se describe detalladamente la lógica, la arquitectura y el prop
           }
         };
         ```
-*   **Detalle para la defensa:** El parámetro `response_format: { type: 'json_object' }` garantiza que la IA de Grok devuelva exactamente el objeto JSON estructurado que la app espera (`isScam`, `confidenceScore`, etc.), previniendo errores de casteo o textos adicionales.
+
 
 ---
 
@@ -256,8 +255,5 @@ A continuación se describe detalladamente la lógica, la arquitectura y el prop
 
 ---
 
-## 💡 Recomendaciones para la Presentación de Mañana
-
-1.  **Asegurar Conectividad Móvil:** Si la red de la institución bloquea las IPs locales, puedes levantar el backend en tu laptop y asegurarte de que tu celular esté en la misma red Wi-Fi. Recuerda cambiar la IP en `utils/analyzer.js`.
-2.  **Mostrar el Modo Demo:** Puedes deshabilitar el internet de tu laptop o quitar la API key para mostrarle al docente cómo la app **sigue funcionando perfectamente** en Modo Demo offline. Esto les dará puntos extra por resiliencia de software.
+resiliencia de software.
 3.  **Hacer Énfasis en la Tipografía:** Comenten al profesor que cargaron `Montserrat-Bold` e `Inter-Regular` de forma dinámica para garantizar que los textos de phishing se visualicen con tipografías legibles y atractivas.
