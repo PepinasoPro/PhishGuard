@@ -1,0 +1,15 @@
+  1. El Backend (El "Cerebro" de IA)
+
+  Primero debes iniciar el servicio de detección. Entra en la carpeta del servicio:
+
+  cd scam-detector-service
+  npm install        # Solo la primera vez
+  npm run build      # Compila el código TS a JS
+
+
+
+  En otra terminal, en la raíz del proyecto:
+
+  npm install        # Solo la primera vez
+  npx expo start     # Lanza el servidor de Expo
+
