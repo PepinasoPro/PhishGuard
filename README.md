@@ -255,5 +255,5 @@ A continuación se describe detalladamente la lógica, la arquitectura y el prop
 
 ---
 
-resiliencia de software.
-3.  **Hacer Énfasis en la Tipografía:** Comenten al profesor que cargaron `Montserrat-Bold` e `Inter-Regular` de forma dinámica para garantizar que los textos de phishing se visualicen con tipografías legibles y atractivas.
+
+
