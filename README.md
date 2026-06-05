@@ -1,4 +1,4 @@
-# Guía de Estudio y Defensa: PhishGuard 🛡️
+# Guía de PhishGuard 🛡️
 
 Esta guía ha sido diseñada para prepararte a ti y a tus compañeros para la evaluación de mañana. Contiene el resumen técnico del proyecto, cómo se cumplen los puntos de la pauta, las respuestas clave ante la comisión evaluadora y una **explicación sumamente detallada del código fuente**.
 
