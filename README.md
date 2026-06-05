@@ -66,31 +66,8 @@ sequenceDiagram
     App->>App: Mapea respuesta y guarda en el Historial (Zustand + AsyncStorage)
 ```
 
----
 
-## 🧠 Preguntas Dirigidas del Examen (Simulación)
 
-### Pregunta 1: ¿Cómo implementaron la persistencia local en la aplicación?
-*   **Respuesta Estudiante:** *"Usamos **Zustand** como manejador de estado global. Para cumplir con la persistencia, conectamos Zustand con **AsyncStorage** usando el middleware `persist`. Esto guarda automáticamente el historial de análisis en formato **JSON** en el almacenamiento interno persistente del celular, lo que significa que el historial se mantiene incluso si el usuario cierra o apaga la aplicación."*
-*   **Archivo Clave:** [store.ts](file:///c:/Users/pepin/OneDrive/Desktop/moviles/PhishGuard/store.ts)
-
-### Pregunta 2: ¿Cómo funciona el mecanismo de "Modo Demo" o Fallback? ¿Qué pasa si el servidor de Grok está caído o no tienen saldo/internet?
-*   **Respuesta Estudiante:** *"Implementamos un patrón de diseño de **contingencia automática (Fallback)**. En el backend, las peticiones HTTP que enviamos a la API de Grok están envueltas en un bloque `try/catch`. Si la llamada a la IA de Grok falla debido a falta de internet, problemas de red o cuotas de API, capturamos el error en el catch y redirigimos la consulta instantáneamente al **Modo Demo** local (`demoModeService`), garantizando que la aplicación nunca se caiga y devuelva un análisis heurístico confiable al instante."*
-*   **Archivo Clave:** [grokService.ts](file:///c:/Users/pepin/OneDrive/Desktop/moviles/PhishGuard/scam-detector-service/src/services/grokService.ts)
-
-### Pregunta 3: En el "Modo Demo", ¿cómo analizan una imagen localmente sin conectarse a la IA?
-*   **Respuesta Estudiante:** *"Utilizamos un sistema de dos etapas. Primero, intentamos realizar un **OCR** (Reconocimiento Óptico de Caracteres) local usando la librería `tesseract.js` (que compila a WebAssembly y corre nativa en Node.js) para extraer cualquier texto escrito en la imagen. Si el OCR falla o el servidor está totalmente sin internet (impidiendo inicializar el worker), ejecutamos un **fallback forense secundario** que escanea el buffer de bytes binarios de la imagen extrayendo cadenas ASCII imprimibles (similar al comando `strings` de Linux) en busca de palabras de urgencia o enlaces. Finalmente, aplicamos nuestro motor de reglas de texto sobre la cadena resultante."*
-*   **Archivo Clave:** [demoModeService.ts](file:///c:/Users/pepin/OneDrive/Desktop/moviles/PhishGuard/scam-detector-service/src/services/demoModeService.ts)
-
-### Pregunta 4: ¿Qué criterios heurísticos utiliza el Modo Demo para decidir si un texto o enlace es phishing?
-*   **Respuesta Estudiante:** *"El motor local analiza 4 capas:*
-    1.  *Gatillos de Urgencia: Palabras clave en español como 'urgente', 'bloqueada', 'suspensión', 'actualiza ya'.*
-    2.  *Datos Sensibles: Solicitudes de información como 'contraseña', 'CVV', 'clave', 'pin'.*
-    3.  *Impersonación: Búsqueda de nombres de marcas conocidas como 'BBVA', 'Netflix', 'PayPal' emparejados con palabras de urgencia.*
-    4.  *Estructura de Enlaces (URLs): Escaneamos con expresiones regulares para detectar direcciones IP directas (ej. `192.168...`), acortadores de enlaces (como `bit.ly`), TLDs de alto riesgo (como `.xyz`, `.ru`, `.cc`) o dominios typosquatted como `netflix-update-portal.cc`.*
-    *Calculamos un puntaje de riesgo sumando los pesos de cada indicador y si supera el 40% (0.40) se declara como fraude."*
-
----
 
 ## 📂 Explicación Detallada del Código (Paso a Paso)
 
